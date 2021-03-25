@@ -5,64 +5,35 @@ import List from "./list";
 import FeaturedMedia from "./featured-media";
 
 const Post = ({ state, actions, libraries }) => {
-  // // Get information about the current URL.
-  // const data = state.source.get(state.router.link);
-  // // Get the data of the post.
-  // const post = state.source[data.type][data.id];
-  // // Get the data of the author.
-  // const author = state.source.author[post.author];
-  // // Get a human readable date.
-  // const date = new Date(post.date);
+  // Get information about the current URL.
+  const data = state.source.get(state.router.link);
+  // Get the data of the post.
+  const post = state.source[data.type][data.id];
+  // Get the data of the author.
+  const author = state.source.author[post.author];
 
-  // // Get the html2react component.
-  // const Html2React = libraries.html2react.Component;
 
-  // /**
-  //  * Once the post has loaded in the DOM, prefetch both the
-  //  * home posts and the list component so if the user visits
-  //  * the home page, everything is ready and it loads instantly.
-  //  */
-  // useEffect(() => {
-  //   actions.source.fetch("/");
-  //   List.preload();
-  // }, []);
+  // Get the html2react component.
+  const Html2React = libraries.html2react.Component;
 
-  // // Load the post, but only if the data is ready.
-  // return data.isReady ? (
-  //   <Container>
-  //     <div>
-  //       <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+  /**
+   * Once the post has loaded in the DOM, prefetch both the
+   * home posts and the list component so if the user visits
+   * the home page, everything is ready and it loads instantly.
+   */
+  useEffect(() => {
+    actions.source.fetch("/");
+    List.preload();
+  }, []);
 
-  //       {/* Only display author and date on posts */}
-  //       {data.isPost && (
-  //         <div>
-  //           {author && (
-  //             <StyledLink link={author.link}>
-  //               <Author>
-  //                 By <b>{author.name}</b>
-  //               </Author>
-  //             </StyledLink>
-  //           )}
-  //           <DateWrapper>
-  //             {" "}
-  //             on <b>{date.toDateString()}</b>
-  //           </DateWrapper>
-  //         </div>
-  //       )}
-  //     </div>
-
-  //     {/* Look at the settings to see if we should include the featured image */}
-  //     {state.theme.featured.showOnPost && (
-  //       <FeaturedMedia id={post.featured_media} />
-  //     )}
-
-  //     {/* Render the content using the Html2React component so the HTML is processed
-  //      by the processors we included in the libraries.html2react.processors array. */}
-  //     <Content>
-  //       <Html2React html={post.content.rendered} />
-  //     </Content>
-  //   </Container>
-  // ) : null;
+  // Load the post, but only if the data is ready.
+  return data.isReady ? (
+    <Container>
+      <Content>
+        <p dangerouslySetInnerHTML={{ __html: post.acf.question.text}} />
+      </Content>
+    </Container>
+  ) : null;
 };
 
 export default connect(Post);

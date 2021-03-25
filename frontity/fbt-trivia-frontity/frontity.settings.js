@@ -15,7 +15,25 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://localhost:10008/"
+          "url": "http://localhost:10008/",
+          "postTypes": [
+            {
+              type: "trivia",
+              endpoint: "trivia",
+              archive: "/trivia"
+            },
+            {
+              type: "round",
+              endpoint: "round",
+              archive: "/round"
+            },
+            {
+              type: "question",
+              endpoint: "question",
+              archive: "/question"
+            }
+          ]
+        
         }
       }
     },

@@ -1,21 +1,27 @@
-const Root = () => {
-  return (
-    <>
-      You can edit your package in:
-      <pre>packages/fbt-trivia/src/index.js</pre>
-    </>
-  );
-};
+import Root from "./components"
 
-export default {
+const FbtTrivia = {
   name: "fbt-trivia",
   roots: {
     theme: Root
   },
+
   state: {
-    theme: {}
+    theme: {
+      autoPrefetch: "in-view",
+      menu: [
+        ["Home","/"],
+      ],
+      featured: {
+        showOnList: false,
+        showOnPost: false,
+      }
+    }
   },
+  
   actions: {
     theme: {}
   }
 };
+
+export default FbtTrivia
